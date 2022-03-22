@@ -1,25 +1,20 @@
-PVector location;
-PVector velocity;
+Particle p1;
+Particle p2;
+
 void setup() {
-  size(640,360);
-  location = new PVector(25,180);
-  velocity = new PVector(-4,0);
-  location = new PVector(610,180);
-  velocity = new PVector(2,0);
+  size(600,400);
+  p1 = new Particle();
+  p2 = new Particle();
 }
- 
 void draw() {
   background(255);
-  
-  location.add(velocity);
-  if ((location.x > width) || (location.x < 0)) {
-    velocity.x = velocity.x * -1;
+  float d = distance(p1.x, p1.y, p2.x, p2.y);
+  if (d < p1.x + p2.x) {
+    velocity = new PVector(-4,0);
+    speed = new PVector(-2, 0);
+ 
+  p1.display();
+  p1.bounce();
+  p2.display();
+  p2.bounce();
   }
-  if ((location.y > height) || (location.y < 0)) {
-    velocity.y = velocity.y * -1;
-  }
-  stroke(0);
-  fill(175);
-  ellipse(25,180,25,25);
-  ellipse(location.x,location.y, 30, 30);
-}
